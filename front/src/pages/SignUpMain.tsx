@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import SignUpTopBar from "../components/SignUpTopBar";
 import { useNavigate } from "react-router-dom";
+import AuthService from "../services/AuthService";
 
 interface SignUpInputStyleProps {
   error: boolean;
@@ -85,6 +86,7 @@ const SignUpMain: React.FC = () => {
   const [isPwCheckVisible, setIsPwCheckVisible] = useState(false);
   const emailRegex =
     /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+
   const passwordRegex =
     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,16}$/;
   useEffect(() => {
@@ -160,7 +162,11 @@ const SignUpMain: React.FC = () => {
       passwordCheck !== ""
     ) {
       alert(`Email: ${email}, Password: ${password}`);
-      nav("/");
+      //AuthService.signup(email, password, passwordCheck);
+      AuthService.login(email, password);
+      console.log(email);
+      console.log(password);
+      //  nav("/");
     } else {
       console.log("회원가입 버튼 클릭: 유효성 검사 실패");
     }
@@ -173,7 +179,9 @@ const SignUpMain: React.FC = () => {
   const handlePwCheckVisibleBtn = () => {
     setIsPwCheckVisible(!isPwCheckVisible);
   };
+  //
 
+  //
   return (
     <>
       <SignUpTopBar />
