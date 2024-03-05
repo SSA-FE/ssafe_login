@@ -7,72 +7,69 @@ interface SignUpInputStyleProps {
   error: boolean;
 }
 
+const MainInputLabel = styled.label`
+  text-align: left;
+  width: 330px;
+  margin: 30px 5px 5px 5px;
+`;
+const MainInputErrorText = styled.span<SignUpInputStyleProps>`
+  color: red;
+  text-align: left;
+  width: 330px;
+  margin: 5px;
+  display: ${(props) => (props.error ? "block" : "none")};
+`;
+const MainInputText = styled.input`
+  width: 350px;
+  height: 50px;
+  background-color: white;
+  border-radius: 30px;
+  border: 3px solid rgb(220, 220, 220);
+  padding-left: 20px;
+  &:focus {
+    border: 3px solid skyblue;
+    outline: none;
+  }
+`;
+const MainVisibleImg = styled.img`
+  position: absolute;
+  top: 70px;
+  right: 15px;
+  opacity: 50%;
+`;
 const SignUpInputStyle = styled.div<SignUpInputStyleProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
-
-  b {
-    text-align: left;
-    width: 330px;
-    margin: 30px 5px 5px 5px;
-  }
-  span {
-    color: red;
-    text-align: left;
-    width: 330px;
-    margin: 5px;
-    display: ${(props) => (props.error ? "block" : "none")};
-  }
-  input {
-    width: 350px;
-    height: 50px;
-    background-color: white;
-    border-radius: 30px;
-    border: 3px solid rgb(220, 220, 220);
-    padding-left: 20px;
-  }
-  input:focus {
-    border: 3px solid skyblue;
-    outline: none;
-  }
-  .MainVisibleImg {
-    position: absolute;
-    top: 70px;
-    right: 15px;
-    opacity: 50%;
-  }
 `;
+const MainText = styled.div`
+  font-size: 40px;
+  margin: 30px;
+  text-align: center;
+  font-weight: 800;
+`;
+const MainSignUpBtn = styled.button`
+  background-color: skyblue;
+  width: 370px;
+  height: 50px;
+  border-radius: 30px;
+  border: none;
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 40px;
 
-const SignUpMainStyle = styled.div`
-  .MainContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 50px;
-  }
-  h1 {
-    font-size: 40px;
-    margin: 30px;
-    text-align: center;
-  }
-
-  .MainSignUpBtn {
-    background-color: skyblue;
-    width: 370px;
-    height: 50px;
-    border-radius: 30px;
-    border: none;
-    color: white;
-    font-size: 20px;
-    font-weight: 700;
-    cursor: pointer;
-    margin-top: 40px;
-  }
-  button[disabled] {
+  &:disabled {
     background-color: grey;
   }
+`;
+const SignUpMainStyle = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
 `;
 
 const SignUpMain: React.FC = () => {
@@ -86,7 +83,10 @@ const SignUpMain: React.FC = () => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [isPwVisible, setIsPwVisible] = useState(false);
   const [isPwCheckVisible, setIsPwCheckVisible] = useState(false);
-
+  const emailRegex =
+    /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+  const passwordRegex =
+    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,16}$/;
   useEffect(() => {
     setIsButtonDisabled(
       emailError ||
@@ -99,8 +99,6 @@ const SignUpMain: React.FC = () => {
   }, [emailError, passwordError, passwordCheckError]);
 
   const checkEmail = () => {
-    const emailRegex =
-      /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
     if (!emailRegex.test(email)) {
       setEmailError(true);
     } else {
@@ -117,8 +115,6 @@ const SignUpMain: React.FC = () => {
   };
 
   const checkPassword = () => {
-    const passwordRegex =
-      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,16}$/;
     if (!passwordRegex.test(password)) {
       setPasswordError(true);
     } else {
@@ -182,80 +178,65 @@ const SignUpMain: React.FC = () => {
     <>
       <SignUpTopBar />
       <SignUpMainStyle>
-        <div className="MainContainer">
-          <h1 className="MainText">
-            더 쉬운 폼을 위한 시작
-            <br />
-            폼나는 싸패
-          </h1>
-          <SignUpInputStyle error={emailError}>
-            <b>이메일</b>
-            <input
-              className="MainInputEmail"
-              placeholder="이메일을 입력하세요"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              onBlur={checkEmail}
-            ></input>
+        <MainText>
+          더 쉬운 폼을 위한 시작
+          <br />
+          폼나는 싸패
+        </MainText>
+        <SignUpInputStyle error={emailError}>
+          <MainInputLabel>이메일</MainInputLabel>
+          <MainInputText
+            placeholder="이메일을 입력하세요"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            onBlur={checkEmail}
+          ></MainInputText>
 
-            <span className="MainInputEmailErr">
-              유효하지않은 이메일 입니다.
-            </span>
-          </SignUpInputStyle>
-          <SignUpInputStyle error={passwordError}>
-            <b>비밀번호</b>
-            <input
-              className="MainInputPw"
-              type={isPwVisible ? "text" : "password"}
-              placeholder="비밀번호를 입력하세요"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              onBlur={checkPassword}
-            ></input>
-            <img
-              className="MainVisibleImg"
-              src={
-                isPwVisible ? "res/iconInVisible.svg" : "res/iconVisible.svg"
-              }
-              onClick={handlePwVisibleBtn}
-              alt="visible"
-            ></img>
-            <span className="MainInputPwErr">
-              유효하지않은 비밀번호 입니다.
-            </span>
-          </SignUpInputStyle>
-          <SignUpInputStyle error={passwordCheckError}>
-            <b>비밀번호 확인</b>
-            <input
-              className="MainInputPwCheck"
-              type={isPwCheckVisible ? "text" : "password"}
-              placeholder="비밀번호를 다시 입력하세요"
-              value={passwordCheck}
-              onChange={(e) => setPasswordCheck(e.target.value)}
-              onBlur={checkPasswordCheck}
-            ></input>
-            <img
-              className="MainVisibleImg"
-              src={
-                isPwCheckVisible
-                  ? "res/iconInVisible.svg"
-                  : "res/iconVisible.svg"
-              }
-              onClick={handlePwCheckVisibleBtn}
-              alt="visibleIcon"
-            />
-            <span className="MainInputPwCheckErr">
-              비밀번호가 일치하지 않습니다.
-            </span>
-          </SignUpInputStyle>
-          <button
-            className="MainSignUpBtn"
-            onClick={handleSignUp}
-            disabled={isButtonDisabled}
-          >
-            회원가입
-          </button>
-        </div>
+          <MainInputErrorText error={emailError}>
+            유효하지않은 이메일 입니다.
+          </MainInputErrorText>
+        </SignUpInputStyle>
+        <SignUpInputStyle error={passwordError}>
+          <MainInputLabel>비밀번호</MainInputLabel>
+          <MainInputText
+            type={isPwVisible ? "text" : "password"}
+            placeholder="비밀번호를 입력하세요"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            onBlur={checkPassword}
+          ></MainInputText>
+          <MainVisibleImg
+            src={isPwVisible ? "res/iconInVisible.svg" : "res/iconVisible.svg"}
+            onClick={handlePwVisibleBtn}
+            alt="visible"
+          />
+          <MainInputErrorText error={passwordError}>
+            유효하지않은 비밀번호 입니다.
+          </MainInputErrorText>
+        </SignUpInputStyle>
+        <SignUpInputStyle error={passwordCheckError}>
+          <MainInputLabel>비밀번호 확인</MainInputLabel>
+          <MainInputText
+            type={isPwCheckVisible ? "text" : "password"}
+            placeholder="비밀번호를 다시 입력하세요"
+            value={passwordCheck}
+            onChange={(e) => setPasswordCheck(e.target.value)}
+            onBlur={checkPasswordCheck}
+          ></MainInputText>
+          <MainVisibleImg
+            src={
+              isPwCheckVisible ? "res/iconInVisible.svg" : "res/iconVisible.svg"
+            }
+            onClick={handlePwCheckVisibleBtn}
+            alt="visibleIcon"
+          />
+          <MainInputErrorText error={passwordCheckError}>
+            비밀번호가 일치하지 않습니다.
+          </MainInputErrorText>
+        </SignUpInputStyle>
+        <MainSignUpBtn onClick={handleSignUp} disabled={isButtonDisabled}>
+          회원가입
+        </MainSignUpBtn>
       </SignUpMainStyle>
     </>
   );
