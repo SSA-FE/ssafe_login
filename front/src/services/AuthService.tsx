@@ -26,6 +26,7 @@ class AuthService {
       .then((response) => {
         console.log("로그인성공");
         if (response.data.accessToken) {
+          console.log("token 발행");
           localStorage.setItem("user", JSON.stringify(response.data));
         }
         return response.data;
@@ -35,18 +36,20 @@ class AuthService {
       });
   }
   logout() {
+    console.log("로그아웃 드가자");
     localStorage.removeItem("user");
   }
   test() {
+    console.log(authHeader());
     return axios
       .get("http://localhost:8000/auth/test", {
         headers: authHeader(),
       })
       .then((response) => {
-        console.log(response);
+        console.log("JWT TEST SUCCESS" + response);
       })
       .catch((error) => {
-        console.log(error);
+        console.log("JWT TEST FAIL" + error);
       });
   }
 
