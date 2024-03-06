@@ -77,8 +77,13 @@ const Signup = () => {
 
   const navigate = useNavigate();
   const onValid = (data: ISignUpForm) => {
+    // const loginData = JSON.stringify(data);
     console.log(data);
-    alert(JSON.stringify(data));
+    alert(`회원가입 성공!
+email: ${data.email},
+password: ${data.password}
+    `);
+    navigate("/");
   };
 
   return (
