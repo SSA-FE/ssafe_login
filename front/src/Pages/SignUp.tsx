@@ -1,20 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   font-family: "Noto Sans KR";
   height: 100vh;
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 `;
 
 const TextBoard = styled.div`
-  justify-content: center;
   align-items: center;
-  align-content: center;
 `;
 
 const Title = styled.h1`
@@ -25,8 +24,9 @@ const Title = styled.h1`
 
 const TextBox = styled.div`
   display: flex;
-  height: 400px;
   flex-direction: column;
+  height: 400px;
+  width: auto;
   margin-bottom: 10px;
 `;
 
@@ -37,7 +37,7 @@ const InputInfo = styled.label`
 `;
 
 const InputBox = styled.input`
-  width: 95%;
+  width: 400px;
   height: 30px;
   padding: 10px 10px 10px 20px;
   margin-bottom: 10px;
@@ -50,7 +50,7 @@ const InputBox = styled.input`
 `;
 
 const SignupButton = styled.button`
-  width: 100%;
+  width: 440px;
   height: 50px;
   font-size: 20px;
   font-weight: bold;
@@ -63,27 +63,22 @@ const SignupButton = styled.button`
 
 const Signup = () => {
   interface ISignUpForm {
-    email: string;
-    password: string;
-    passwordCheck: string;
+    email?: string;
+    password?: string;
+    passwordCheck?: string;
   }
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-    setError,
-    watch,
-  } = useForm<ISignUpForm>();
+    getValues,
+  } = useForm<ISignUpForm>({ shouldFocusError: true });
 
-  const onSubmit = (data: any) => {
-    // console.log(data);
-    if (data.password !== data.passwordCheck) {
-      setError("passwordCheck", { message: "비밀번호가 다릅니다" });
-    }
-  };
-  //   console.log(formState.errors);
-  const onInValid = (error: any) => {
-    console.log(error);
+  const navigate = useNavigate();
+  const onValid = (data: ISignUpForm) => {
+    console.log(data);
+    alert(JSON.stringify(data));
   };
 
   return (
@@ -94,47 +89,58 @@ const Signup = () => {
           <br />
           폼나는싸패
         </Title>
-        <form onSubmit={handleSubmit(onSubmit, onInValid)}>
+        <form onSubmit={handleSubmit(onValid)}>
           <TextBox>
             <InputInfo htmlFor="email">이메일</InputInfo>
             <InputBox
               id="email"
               type="email"
+              placeholder="ssafe11@gmail.com"
               {...register("email", {
                 required: "이메일은 필수 입력입니다",
-                pattern: /^[A-Za-z0-9_.-]+@[A-Za-z0-9-]+\.[A-za-z0-9-]+/,
+                pattern: {
+                  value: /^[A-Za-z0-9_.-]+@[A-Za-z0-9-]+\.[A-za-z0-9-]+/,
+                  message: "이메일은 '@'를 반드시 포함해야합니다.",
+                },
               })}
-              placeholder="ssafe11@gmail.com"
             />
-            {/* {errors.id && <p>{errors.id.message}</p>} */}
-            {/* {errors.email && <p>유효하지 않은 이메일입니다</p>} */}
+            {errors.email && <p>{errors.email.message}</p>}
             <InputInfo htmlFor="password">비밀번호</InputInfo>
             <InputBox
               id="password"
               type="password"
+              placeholder="********"
               {...register("password", {
                 required: "비밀번호는 필수 입력입니다",
                 pattern: {
                   value:
-                    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@#$%^&*])[A-Za-z\d@#$%^&*]{8,16}$/,
+                    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d@#$%^&*]{8,16}$/,
                   message:
                     "비밀번호는 숫자, 영문, 특수기호를 포함해 8자리 이상 16자리 이하여야 합니다.",
                 },
               })}
-              placeholder="********"
             />
-            {errors.password && <p>유효하지 않은 비밀번호입니다.</p>}
+            {errors.password && <p>{errors.password.message}</p>}
             <InputInfo htmlFor="passwordCheck">비밀번호 확인</InputInfo>
             <InputBox
               id="passwordCheck"
               type="password"
+              placeholder="********"
               {...register("passwordCheck", {
                 required: "비밀번호 확인이 필요합니다",
                 pattern:
-                  /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@#$%^&*])[A-Za-z\d@#$%^&*]{8,16}$/,
+                  /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d@#$%^&*]{8,16}$/,
+                validate: {
+                  check: (value) => {
+                    const originalPassword = getValues("password");
+                    if (originalPassword && originalPassword !== value) {
+                      return "비밀번호가 일치하지 않습니다.";
+                    }
+                  },
+                },
               })}
-              placeholder="********"
             />
+            {errors.passwordCheck && <p>{errors.passwordCheck.message}</p>}
           </TextBox>
           <SignupButton type="submit">회원가입</SignupButton>
         </form>
