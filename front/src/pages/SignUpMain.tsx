@@ -163,10 +163,10 @@ const SignUpMain: React.FC = () => {
     ) {
       alert(`Email: ${email}, Password: ${password}`);
       //AuthService.signup(email, password, passwordCheck);
-      // AuthService.login(email, password);
-      AuthService.test();
+      //AuthService.login(email, password);
+      //AuthService.test();
       //AuthService.logout();
-      //  nav("/");
+      //nav("/test");
     } else {
       console.log("회원가입 버튼 클릭: 유효성 검사 실패");
     }

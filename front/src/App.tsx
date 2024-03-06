@@ -5,7 +5,7 @@ import SignUpMain from "./pages/SignUpMain";
 import SignUpTest from "./pages/SignUpTest";
 import ProtectedRoute from "./router/ProtectedRoutes";
 import { createGlobalStyle } from "styled-components";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes,Navigate } from "react-router-dom";
 import { Reset } from "styled-reset";
 
 const GlobalStyle = createGlobalStyle`
@@ -15,6 +15,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
+  const isAuthenticated = localStorage.getItem("user") !== null;
   return (
     <>
       <Reset />
@@ -22,7 +23,7 @@ function App() {
       <Routes>
         <Route path="/" element={<SignUpHome />} />
         <Route path="/main" element={<SignUpMain />} />
-        <Route path="/test" elements={<SignUpTest />} />
+
       </Routes>
     </>
   );
