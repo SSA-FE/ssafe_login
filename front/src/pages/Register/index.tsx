@@ -1,6 +1,9 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
+import axios from "axios";
+
+import { RegisterType } from "../../../@types";
 import { InputField } from "../../components/InputField";
 
 import classNames from "classnames";
@@ -13,16 +16,31 @@ export const RegisterPage = () => {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm({
+  } = useForm<RegisterType>({
     mode: "onChange",
   });
 
-  const onSubmit = (data) => {
-    const { email, password } = data;
+  const onSubmit = (data: RegisterType) => {
+    const { email, password, passwordConfirm } = data;
 
-    alert(`이메일: ${email} \n비밀번호: ${password}`);
+    alert(
+      `이메일: ${email} \n비밀번호: ${password} \n비밀번호 확인: ${passwordConfirm}`
+    );
 
-    navigate("/");
+    axios
+      .post("http://localhost:8000/auth/signup", {
+        email,
+        pw: password,
+        comparePw: passwordConfirm,
+      })
+      .then((res) => {
+        console.log(res);
+
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   return (
     <div

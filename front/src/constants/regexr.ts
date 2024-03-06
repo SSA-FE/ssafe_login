@@ -1,3 +1,3 @@
 export const EMAIL_REGEX = /^\S+@\S+\.\S+$/i;
 export const PASSWORD_REGEX =
-  /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!])[A-Za-z\d@$!%*#?&]{8,16}$/;
+  /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;

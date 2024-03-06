@@ -3,6 +3,8 @@ import { useState } from "react";
 import visible_on from "../../assets/icon/visible_on.svg";
 import visible_off from "../../assets/icon/visible_off.svg";
 
+import { InputFieldType } from "../../../@types";
+
 import {
   CONFIRM_PASSWORD_MESSAGE,
   EMAIL_MESSAGE,
@@ -11,16 +13,22 @@ import {
 import classNames from "classnames";
 import { EMAIL_REGEX, PASSWORD_REGEX } from "../../constants/regexr";
 
-export const InputField = ({ label, type, register, errors, ...rest }) => {
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+export const InputField = ({
+  label,
+  type,
+  register,
+  errors,
+  ...rest
+}: InputFieldType) => {
+  const [isPasswordVisible, setIsPasswordVisible] = useState<Boolean>(false);
   const [isPasswordConfirmVisible, setIsPasswordConfirmVisible] =
-    useState(false);
+    useState<Boolean>(false);
 
   if (type === "password") {
     return (
       <div className={classNames("mb-4")}>
         <label
-          for="input-password"
+          htmlFor="input-password"
           className={classNames(
             "px-4",
             "mb-2",
@@ -100,7 +108,7 @@ export const InputField = ({ label, type, register, errors, ...rest }) => {
     return (
       <div className="relative">
         <label
-          for="input-password-confirm"
+          htmlFor="input-password-confirm"
           className={classNames(
             "px-4",
             "mb-2",
@@ -132,8 +140,9 @@ export const InputField = ({ label, type, register, errors, ...rest }) => {
             )}
             {...register("passwordConfirm", {
               required: true,
-              validate: (v) =>
-                v === rest.watch("password") || CONFIRM_PASSWORD_MESSAGE,
+              validate: (v: string) =>
+                v === (rest.watch && rest.watch("password")) ||
+                CONFIRM_PASSWORD_MESSAGE,
             })}
           />
           <div
@@ -178,7 +187,7 @@ export const InputField = ({ label, type, register, errors, ...rest }) => {
   return (
     <div className={classNames("mb-4")}>
       <label
-        for="input-email"
+        htmlFor="input-email"
         className={classNames(
           "px-4",
           "mb-2",

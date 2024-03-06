@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { NavButton } from "./NavButton";
+import { NavButton } from "../../layout/GlobalNav/NavButton";
 
 import { Link } from "react-router-dom";
 
