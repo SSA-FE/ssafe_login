@@ -60,14 +60,14 @@ export const HomePage = () => {
           모든 핵심 과정을 싸피에서 한번에 해결하실 수 있습니다.
         </div>
       </div>
+      {!isUser && (
+        <div className={classNames(
+          'flex',
+          'space-between',
+          'justify-center',
+          'gap-x-2'
+        )}>
 
-      <div className={classNames(
-        'flex',
-        'space-between',
-        'justify-center',
-        'gap-x-2'
-      )}>
-        {!isUser && (
           <Link to="/login">
             <div className={classNames(
               "w-[250px]",
@@ -88,29 +88,29 @@ export const HomePage = () => {
               로그인
 
             </div>
-          </Link>)}
-        <Link to="/join">
-          <div
-            className={classNames(
-              "w-[250px]",
-              "py-4",
+          </Link>
+          <Link to="/join">
+            <div
+              className={classNames(
+                "w-[250px]",
+                "py-4",
 
-              "flex",
-              "justify-center",
-              "items-center",
+                "flex",
+                "justify-center",
+                "items-center",
 
-              "rounded-full",
+                "rounded-full",
 
-              "bg-theme",
+                "bg-theme",
 
-              "font-bold",
-              "text-white"
-            )}
-          >
-            회원가입
-          </div>
-        </Link>
-      </div>
+                "font-bold",
+                "text-white"
+              )}
+            >
+              회원가입
+            </div>
+          </Link>
+        </div>)}
 
     </div>
   );
