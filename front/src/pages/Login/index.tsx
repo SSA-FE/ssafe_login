@@ -21,18 +21,22 @@ const LoginPage = () => {
     const [isIdFocus, setIsIdFocus] = useState<Boolean>(false);
     const [isPwFocus, setIsPwFocus] = useState<Boolean>(false);
 
+    const [errMsg, setErrMsg] = useState<String>("");
+
     const navigate = useNavigate();
 
     const {
         register,
         handleSubmit,
         watch,
+        reset,
         formState: { errors },
     } = useForm<LoginType>({
         mode: "onSubmit",
     });
 
     const onSubmit = (data: LoginType) => {
+        reset();
         const { userId, userPw } = data;
 
         ax.post("/login", {
@@ -45,12 +49,8 @@ const LoginPage = () => {
 
             navigate("/");
         }).catch((err) => {
-            console.log(err);
+            setErrMsg(err.response.data.message);
         })
-
-        alert(
-            `아이디 : ${userId} \n 비밀번호 : ${userPw}`
-        );
     }
 
     return (
@@ -178,7 +178,7 @@ const LoginPage = () => {
                             "text-sm"
                         )}
                     >
-                        {errors.userId ? (errors.userPw ? "아이디와 비밀번호를 입력해주세요" : errors.userId.message) : (errors.userPw ? errors.userPw.message : "")}
+                        {errMsg ? errMsg : errors.userId?.message || errors.userPw?.message}
                     </div>
 
                 )}
