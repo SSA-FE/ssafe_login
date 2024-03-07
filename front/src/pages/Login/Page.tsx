@@ -23,7 +23,7 @@ const LoginPage = () => {
         watch,
         formState: { errors },
     } = useForm<LoginType>({
-        mode: "onChange",
+        mode: "onSubmit",
     });
 
     const onSubmit = (data: LoginType) => {
@@ -93,7 +93,7 @@ const LoginPage = () => {
                     />
                 </div>
 
-                <div className="relative mb-12">
+                <div className="relative mb-4">
                     <div>
                         <img src={isPwFocus ? login_pw_focus : login_pw} alt="비밀번호" className={classNames(
                             "absolute",
@@ -151,7 +151,18 @@ const LoginPage = () => {
                         />
                     </div>
                 </div>
+                {errors && (
+                    <div
+                        className={classNames(
+                            'my-4',
+                            "text-[#F93F3F]",
+                            "text-sm"
+                        )}
+                    >
+                        {errors.userId ? (errors.userPw ? "아이디와 비밀번호를 입력해주세요" : errors.userId.message) : (errors.userPw ? errors.userPw.message : "")}
+                    </div>
 
+                )}
                 <input
                     type="submit"
                     className={classNames(
