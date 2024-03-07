@@ -1,7 +1,7 @@
 # Login
 
 > Sign up Develope해서 Login 만들기
-> 개발 기간: 24.03.04 -
+> 개발 기간: 24.03.04 - 03.07
 
 <br/>
 <br/>
@@ -18,6 +18,8 @@
 <img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=Axios&logoColor=white">
 
 <img src="https://img.shields.io/badge/jsonwebtokens-000?style=for-the-badge&logo=jsonwebtokens&logoColor=white">
+
+<img src="https://img.shields.io/badge/redux-764ABC?style=for-the-badge&logo=redux&logoColor=white">
 
 </div>
 
