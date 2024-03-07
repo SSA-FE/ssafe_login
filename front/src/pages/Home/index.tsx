@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 import classNames from "classnames";
+import { useEffect } from "react";
 
 export const HomePage = () => {
   return (

@@ -28,7 +28,7 @@ export const InputField = ({
     return (
       <div className={classNames("mb-4")}>
         <label
-          htmlFor="input-password"
+          htmlFor="signUpPw"
           className={classNames(
             "px-4",
             "mb-2",
@@ -43,7 +43,7 @@ export const InputField = ({
         </label>
         <div className="relative">
           <input
-            id="input-password"
+            id="signUpPw"
             type={isPasswordVisible ? "text" : "password"}
             className={classNames(
               "w-full",
@@ -108,7 +108,7 @@ export const InputField = ({
     return (
       <div className="relative">
         <label
-          htmlFor="input-password-confirm"
+          htmlFor="signupPwConfirm"
           className={classNames(
             "px-4",
             "mb-2",
@@ -123,7 +123,7 @@ export const InputField = ({
         </label>
         <div>
           <input
-            id="input-password-confirm"
+            id="signupPwConfirm"
             type={isPasswordConfirmVisible ? "text" : "password"}
             className={classNames(
               "w-full",
@@ -187,7 +187,7 @@ export const InputField = ({
   return (
     <div className={classNames("mb-4")}>
       <label
-        htmlFor="input-email"
+        htmlFor="signUpEmail"
         className={classNames(
           "px-4",
           "mb-2",
@@ -203,7 +203,7 @@ export const InputField = ({
 
       <div>
         <input
-          id="input-email"
+          id="signUpEmail"
           type={type}
           className={classNames(
             "w-full",

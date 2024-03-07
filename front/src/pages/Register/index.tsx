@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-import axios from "axios";
-
 import { RegisterType } from "../../../@types";
 import { InputField } from "../../components/InputField";
 
 import classNames from "classnames";
+
+import ax from "../../util/api";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -27,8 +27,8 @@ const RegisterPage = () => {
       `이메일: ${email} \n비밀번호: ${password} \n비밀번호 확인: ${passwordConfirm}`
     );
 
-    axios
-      .post("http://localhost:8000/auth/signup", {
+    ax
+      .post("/signup", {
         email,
         pw: password,
         comparePw: passwordConfirm,

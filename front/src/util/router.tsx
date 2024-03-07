@@ -2,7 +2,7 @@ import { Fragment } from "react";
 
 import { HomePage } from "../pages/Home";
 import RegisterPage from "../pages/Register";
-import LoginPage from "../pages/Login/Page";
+import LoginPage from "../pages/Login";
 
 import GlobalNav from "../layout/GlobalNav";
 

@@ -18,3 +18,8 @@ export type InputFieldType = {
   errors: FieldErrors<RegisterType>;
   watch?: UseFormWatch<RegisterType>;
 };
+
+export type UserButtonType = {
+  user: Boolean;
+  logout: () => void;
+};

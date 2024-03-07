@@ -12,10 +12,16 @@ import login_pw_focus from "../../assets/icon/login_pw_focus.svg";
 import { LoginType } from "../../../@types";
 import { useState } from "react";
 
+import ax from "../../util/api";
+
+import { useNavigate } from "react-router-dom";
+
 const LoginPage = () => {
     const [isPasswordVisible, setIsPasswordVisible] = useState<Boolean>(false);
     const [isIdFocus, setIsIdFocus] = useState<Boolean>(false);
     const [isPwFocus, setIsPwFocus] = useState<Boolean>(false);
+
+    const navigate = useNavigate();
 
     const {
         register,
@@ -28,6 +34,19 @@ const LoginPage = () => {
 
     const onSubmit = (data: LoginType) => {
         const { userId, userPw } = data;
+
+        ax.post("/login", {
+            email: userId,
+            pw: userPw,
+        }).then((res) => {
+            alert("로그인 성공");
+            localStorage.setItem("accessToken", res.data.accessToken);
+            localStorage.setItem("refreshToken", res.data.refreshToken);
+
+            navigate("/");
+        }).catch((err) => {
+            console.log(err);
+        })
 
         alert(
             `아이디 : ${userId} \n 비밀번호 : ${userPw}`
@@ -70,7 +89,7 @@ const LoginPage = () => {
                         )} />
                     </div>
                     <input
-                        id="login-input-email"
+                        id="userId"
                         type="email"
                         className={classNames(
                             "w-full",
@@ -106,7 +125,7 @@ const LoginPage = () => {
                         )} />
                     </div>
                     <input
-                        id="login-input-pw"
+                        id="userPw"
                         placeholder="비밀번호"
                         type={isPasswordVisible ? "text" : "password"}
                         className={classNames(
