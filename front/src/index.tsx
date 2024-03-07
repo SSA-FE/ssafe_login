@@ -5,6 +5,9 @@ import "./index.css";
 
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { routerInfo } from "./util/router";
+import { Provider } from "react-redux";
+
+import store from "./store";
 
 const router = createBrowserRouter(routerInfo);
 
@@ -13,6 +16,8 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <Fragment>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </Fragment>
 );

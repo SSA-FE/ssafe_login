@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 
 import classNames from "classnames";
-import { useEffect } from "react";
+import { useAppSelector } from "../../store";
 
 export const HomePage = () => {
+  const isUser = useAppSelector((state) => state.isUser);
+
   return (
     <div
       className={classNames(
@@ -65,27 +67,28 @@ export const HomePage = () => {
         'justify-center',
         'gap-x-2'
       )}>
-        <Link to="/login">
-          <div className={classNames(
-            "w-[250px]",
-            "py-4",
+        {!isUser && (
+          <Link to="/login">
+            <div className={classNames(
+              "w-[250px]",
+              "py-4",
 
-            "flex",
-            "justify-center",
-            "items-center",
+              "flex",
+              "justify-center",
+              "items-center",
 
-            "rounded-full",
+              "rounded-full",
 
-            "border-2",
-            "border-[#6ED1F9]",
+              "border-2",
+              "border-[#6ED1F9]",
 
-            "text-[#6ED1F9]",
-            "font-bold"
-          )}>
-            로그인
+              "text-[#6ED1F9]",
+              "font-bold"
+            )}>
+              로그인
 
-          </div>
-        </Link>
+            </div>
+          </Link>)}
         <Link to="/join">
           <div
             className={classNames(

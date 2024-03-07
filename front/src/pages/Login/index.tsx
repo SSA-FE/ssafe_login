@@ -15,6 +15,8 @@ import { useState } from "react";
 import ax from "../../util/api";
 
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../store";
+import { login } from "../../store/reducer";
 
 const LoginPage = () => {
     const [isPasswordVisible, setIsPasswordVisible] = useState<Boolean>(false);
@@ -24,6 +26,7 @@ const LoginPage = () => {
     const [errMsg, setErrMsg] = useState<String>("");
 
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
 
     const {
         register,
@@ -47,6 +50,7 @@ const LoginPage = () => {
             localStorage.setItem("accessToken", res.data.accessToken);
             localStorage.setItem("refreshToken", res.data.refreshToken);
 
+            dispatch(login())
             navigate("/");
         }).catch((err) => {
             setErrMsg(err.response.data.message);

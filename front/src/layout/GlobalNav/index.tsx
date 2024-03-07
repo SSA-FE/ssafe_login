@@ -1,14 +1,9 @@
-import { useState } from "react";
-
 import classNames from "classnames";
 import NavButton from "./NavButton";
-import UserButton from "./UserButton";
 
 import { Link } from "react-router-dom";
 
 const GlobalNav = () => {
-  const [isUser, setIsUser] = useState<Boolean>(false);
-
 
   return (
     <header

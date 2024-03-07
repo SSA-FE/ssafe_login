@@ -5,9 +5,13 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import ax from "../../../util/api";
+import { useAppDispatch, useAppSelector } from "../../../store";
+import { login, logout } from "../../../store/reducer";
 
 const NavButton = () => {
-  const [isUser, setIsUser] = useState<Boolean>(false);
+  const isUser = useAppSelector((state) => state.isUser);
+
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,7 +29,7 @@ const NavButton = () => {
       }
 
     }).then(() => {
-      setIsUser(true);
+      dispatch(login());
     }).catch((e) => {
       console.error(e);
     })
@@ -39,7 +43,7 @@ const NavButton = () => {
     }
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
-    setIsUser(false);
+    dispatch(logout());
 
     alert("로그아웃 되었습니다.");
     navigate(0);

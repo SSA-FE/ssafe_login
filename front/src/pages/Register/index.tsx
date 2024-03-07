@@ -8,8 +8,12 @@ import classNames from "classnames";
 
 import ax from "../../util/api";
 
+import { useAppDispatch } from "../../store";
+import { login } from "../../store/reducer";
+
 const RegisterPage = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const {
     register,
@@ -23,10 +27,6 @@ const RegisterPage = () => {
   const onSubmit = (data: RegisterType) => {
     const { email, password, passwordConfirm } = data;
 
-    alert(
-      `이메일: ${email} \n비밀번호: ${password} \n비밀번호 확인: ${passwordConfirm}`
-    );
-
     ax
       .post("/signup", {
         email,
@@ -34,8 +34,8 @@ const RegisterPage = () => {
         comparePw: passwordConfirm,
       })
       .then((res) => {
-        console.log(res);
-
+        alert("회원가입 성공! 메인페이지로 이동합니다.");
+        dispatch(login());
         navigate("/");
       })
       .catch((err) => {
