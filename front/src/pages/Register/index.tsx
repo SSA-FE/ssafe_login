@@ -8,7 +8,7 @@ import { InputField } from "../../components/InputField";
 
 import classNames from "classnames";
 
-export const RegisterPage = () => {
+const RegisterPage = () => {
   const navigate = useNavigate();
 
   const {
@@ -120,3 +120,5 @@ export const RegisterPage = () => {
     </div>
   );
 };
+
+export default RegisterPage;

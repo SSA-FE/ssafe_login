@@ -1,7 +1,8 @@
 import { Fragment } from "react";
 
 import { HomePage } from "../pages/Home";
-import { RegisterPage } from "../pages/Register";
+import RegisterPage from "../pages/Register";
+import LoginPage from "../pages/Login/Page";
 
 import GlobalNav from "../layout/GlobalNav";
 
@@ -25,4 +26,14 @@ export const routerInfo = [
       </Fragment>
     ),
   },
+
+  {
+    path: "/login",
+    element: (
+      <Fragment>
+        <GlobalNav />
+        <LoginPage />
+      </Fragment>
+    ),
+  }
 ];

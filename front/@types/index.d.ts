@@ -6,6 +6,11 @@ export type RegisterType = {
   passwordConfirm: string;
 };
 
+export type LoginType = {
+  userId: string;
+  userPw: string;
+};
+
 export type InputFieldType = {
   label: string;
   type: string;
