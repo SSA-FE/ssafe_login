@@ -19,12 +19,14 @@ const RegisterPage = () => {
     register,
     handleSubmit,
     watch,
-    formState: { errors },
+    formState: { errors, isSubmitting, isSubmitted },
   } = useForm<RegisterType>({
     mode: "onChange",
   });
 
   const onSubmit = (data: RegisterType) => {
+    if (isSubmitting || isSubmitted) return;
+
     const { email, password, passwordConfirm } = data;
 
     ax

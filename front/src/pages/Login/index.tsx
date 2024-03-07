@@ -33,13 +33,15 @@ const LoginPage = () => {
         handleSubmit,
         watch,
         reset,
-        formState: { errors },
+        formState: { errors, isSubmitted, isSubmitting },
     } = useForm<LoginType>({
         mode: "onSubmit",
     });
 
     const onSubmit = (data: LoginType) => {
         reset();
+        if (isSubmitting || isSubmitted) return;
+
         const { userId, userPw } = data;
 
         ax.post("/login", {

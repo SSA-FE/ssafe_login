@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import UserButton from "../UserButton";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import ax from "../../../util/api";
@@ -33,7 +33,7 @@ const NavButton = () => {
     }).catch((e) => {
       console.error(e);
     })
-  }, []);
+  }, [dispatch]);
 
   const handleLogout = () => {
     const res = window.confirm("로그아웃 하시겠습니까?");
