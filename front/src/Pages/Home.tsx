@@ -61,7 +61,7 @@ const Home = () => {
           모든 핵심 과정을 폼나는싸패에서 한번에 해결하실 수 있습니다.
         </Description>
       </TextBoard>
-      <Link to="/SignIn">
+      <Link to="/LogIn">
         <SignupButton>로그인</SignupButton>
       </Link>
       <Link to="/SignUp">

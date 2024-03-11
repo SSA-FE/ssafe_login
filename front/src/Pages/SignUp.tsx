@@ -28,11 +28,6 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   const onValidSignUp = (data: ISignUpForm) => {
-    console.log(data);
-    alert(`회원가입 성공!
-  email: ${data.email}
-  password: ${data.password}
-        `);
     // email : ssafe11@gmail.com
     // password : sfsf234%
     // e.preventDefault();
@@ -45,9 +40,25 @@ const SignUp = () => {
         comparePw: data.passwordCheck,
       }),
     })
-      .then((res) => console.log(res))
-      .catch((error) => console.log(error));
-    navigate("/");
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 200) {
+          console.log(`회원가입 성공: + ${data.email}`);
+          alert(`회원가입 성공!
+email: ${data.email}
+password: ${data.password}
+        `);
+          navigate("/");
+        } else if (res.status === 400) {
+          alert(`회원가입 실패: ${data.email}`);
+        } else if (res.status === 500) {
+          alert("서버 오류");
+        }
+      });
+    // .catch((error) => {
+    //   console.error(`오류 발생: ${error}`);
+    //   alert("오류가 발생했습니다.");
+    // });
   };
 
   return (

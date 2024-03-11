@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const HeaderArea = styled.div`
   font-family: "Noto Sans KR";
@@ -31,6 +32,8 @@ const Logo = styled.div`
   text-align: center;
   background-color: white;
   border-radius: 10px;
+  text-decoration: none;
+  &: Link;
 `;
 
 const InfoText = styled.div`
@@ -62,7 +65,9 @@ const Header = () => {
     <>
       <HeaderArea>
         <HeaderLeft>
-          <Logo>폼나는 싸패</Logo>
+          <Link to="/">
+            <Logo>폼나는 싸패</Logo>
+          </Link>
           <InfoText style={{ color: "#9E9E9E", backgroundColor: "#EEEEEE" }}>
             v 3.4.1 24/02/13
           </InfoText>
