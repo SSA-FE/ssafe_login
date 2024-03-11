@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -61,13 +61,13 @@ const SignupButton = styled.button`
   cursor: pointer;
 `;
 
-const Signup = () => {
-  interface ISignUpForm {
-    email?: string;
-    password?: string;
-    passwordCheck?: string;
-  }
+interface ISignUpForm {
+  email: string;
+  password: string;
+  passwordCheck: string;
+}
 
+const Signup = () => {
   const {
     register,
     handleSubmit,
@@ -76,13 +76,27 @@ const Signup = () => {
   } = useForm<ISignUpForm>({ shouldFocusError: true });
 
   const navigate = useNavigate();
+
   const onValid = (data: ISignUpForm) => {
-    // const loginData = JSON.stringify(data);
     console.log(data);
     alert(`회원가입 성공!
-email: ${data.email},
+email: ${data.email}
 password: ${data.password}
-    `);
+      `);
+    // email : ssafe11@gmail.com
+    // password : sfsf234%
+    // e.preventDefault();
+    fetch("http://localhost:8000/auth/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: data.email,
+        pw: data.password,
+        comparePw: data.passwordCheck,
+      }),
+    })
+      .then((res) => console.log(res))
+      .catch((error) => console.log(error));
     navigate("/");
   };
 

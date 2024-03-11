@@ -35,6 +35,7 @@ const Description = styled.div`
 const SignupButton = styled.button`
   width: 260px;
   height: 50px;
+  margin: 10px 0px;
   font-size: 20px;
   font-weight: bold;
   color: white;
@@ -60,6 +61,7 @@ const Home = () => {
           모든 핵심 과정을 폼나는싸패에서 한번에 해결하실 수 있습니다.
         </Description>
       </TextBoard>
+      <SignupButton>로그인</SignupButton>
       <Link to="/Signup">
         <SignupButton>회원가입</SignupButton>
       </Link>

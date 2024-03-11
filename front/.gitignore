@@ -21,3 +21,39 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+
+
+
+async function getProducts() {
+    const res = await axios.get('https://learn.codeit.kr/api/codeitmall/products/');
+    const products = res.data;
+    return products;
+  }
+
+  async function createSizeReview(body) {
+    const res = await axios.post(
+      'https://learn.codeit.kr/api/codeitmall/size-reviews/',
+      body
+    );
+
+    const newSizeReview = res.data;
+    return newSizeReview;
+  }
+
+  axios({
+    url: 'https://test/api/cafe/list/today', // 통신할 웹문서
+    method: 'get', // 통신할 방식
+    data: { // 인자로 보낼 데이터
+      foo: 'diary'
+    }
+  });
+  출처: https://inpa.tistory.com/entry/AXIOS-📚-설치-사용 [Inpa Dev 👨‍💻:티스토리]
+
+  // 예로 만든 axios 구조
+import axios from "axios"
+
+axios.get('https://localhost:3000/login/user')
+  .then((Response)=>{console.log(Response.data)})
+  .catch((Error)=>{console.log(Error)})
+출처: https://koras02.tistory.com/48 [Koras02코딩웹:티스토리]
