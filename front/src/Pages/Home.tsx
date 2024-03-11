@@ -1,49 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-
-const Container = styled.div`
-  font-family: "Noto Sans KR";
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const TextBoard = styled.div`
-  justify-content: center;
-  margin: 0px 0px 100px 0px;
-`;
-
-const SubTitle = styled.div`
-  text-align: center;
-  font-size: 20px;
-  font-weight: bold;
-`;
-
-const Title = styled.h1`
-  text-align: center;
-  font-size: 50px;
-`;
-
-const Description = styled.div`
-  text-align: center;
-  font-size: 20px;
-`;
-
-const SignupButton = styled.button`
-  width: 260px;
-  height: 50px;
-  margin: 10px;
-  font-size: 20px;
-  font-weight: bold;
-  color: white;
-  background-color: #81d4fa;
-  border-radius: 50px;
-  border-color: transparent;
-  cursor: pointer;
-`;
+import {
+  Container,
+  TextBoard,
+  SubTitle,
+  Title,
+  Description,
+  SignupButton,
+} from "../Style/Home.jsx";
 
 const Home = () => {
   return (

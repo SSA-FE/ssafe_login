@@ -17,11 +17,9 @@ interface ISignInForm {
 }
 
 const LogIn = () => {
-  const {
-    register,
-    handleSubmit,
-    // formState: { errors },
-  } = useForm<ISignInForm>({ shouldFocusError: true });
+  const { register, handleSubmit } = useForm<ISignInForm>({
+    shouldFocusError: true,
+  });
 
   const navigate = useNavigate();
 
@@ -57,15 +55,6 @@ const LogIn = () => {
         navigate("/");
       });
   };
-
-  //   .then((result) => {
-  //     if(result.message === "REGISTER_SUCCESS") {
-  //       localStorage.setItem (“token”, result.Authorization);
-  //       // 로그인에 성공하면 local storage에 “token”을 “key” 값으로
-  //       // result.Authorization 를 value 값으로 저장한다는 뜻
-  //       navigate("/")}})
-  //     .catch((error) => console.log(error));
-  // };
 
   return (
     <Container>

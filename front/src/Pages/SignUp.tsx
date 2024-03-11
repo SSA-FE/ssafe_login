@@ -28,9 +28,12 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   const onValidSignUp = (data: ISignUpForm) => {
+    // 저장할 정보
     // email : ssafe11@gmail.com
     // password : sfsf234%
+
     // e.preventDefault();
+
     fetch("http://localhost:8000/auth/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
