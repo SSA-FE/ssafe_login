@@ -1,65 +1,15 @@
 import React from "react";
-import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-
-const Container = styled.div`
-  font-family: "Noto Sans KR";
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-const TextBoard = styled.div`
-  align-items: center;
-`;
-
-const Title = styled.h1`
-  text-align: center;
-  font-size: 45px;
-  margin-bottom: 50px;
-`;
-
-const TextBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 400px;
-  width: auto;
-  margin-bottom: 10px;
-`;
-
-const InputInfo = styled.label`
-  font-weight: bold;
-  font-size: 15px;
-  margin: 10px 10px 8px 15px;
-`;
-
-const InputBox = styled.input`
-  width: 400px;
-  height: 30px;
-  padding: 10px 10px 10px 20px;
-  margin-bottom: 10px;
-  border-radius: 30px;
-  border: 2px solid #e0e0e0;
-  font-size: 15px;
-  &:focus {
-    outline-color: #81d4fa;
-  }
-`;
-
-const SignupButton = styled.button`
-  width: 440px;
-  height: 50px;
-  font-size: 20px;
-  font-weight: bold;
-  background-color: #81d4fa;
-  border-radius: 30px;
-  border-color: transparent;
-  color: white;
-  cursor: pointer;
-`;
+import {
+  Container,
+  TextBoard,
+  Title,
+  TextBox,
+  InputInfo,
+  InputBox,
+  SignupButton,
+} from "../Style/InputBox.jsx";
 
 interface ISignUpForm {
   email: string;
@@ -67,7 +17,7 @@ interface ISignUpForm {
   passwordCheck: string;
 }
 
-const Signup = () => {
+const SignUp = () => {
   const {
     register,
     handleSubmit,
@@ -80,9 +30,9 @@ const Signup = () => {
   const onValidSignUp = (data: ISignUpForm) => {
     console.log(data);
     alert(`회원가입 성공!
-email: ${data.email}
-password: ${data.password}
-      `);
+  email: ${data.email}
+  password: ${data.password}
+        `);
     // email : ssafe11@gmail.com
     // password : sfsf234%
     // e.preventDefault();
@@ -168,4 +118,4 @@ password: ${data.password}
   );
 };
 
-export default Signup;
+export default SignUp;

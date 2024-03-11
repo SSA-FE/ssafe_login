@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -46,35 +45,7 @@ const SignupButton = styled.button`
   cursor: pointer;
 `;
 
-interface ISignUpForm {
-  email: string;
-  password: string;
-  passwordCheck: string;
-}
-
 const Home = () => {
-  const { handleSubmit } = useForm<ISignUpForm>({ shouldFocusError: true });
-
-  const onValidSignIn = (data: ISignUpForm) => {
-    console.log(data);
-    fetch("http://localhost:8000/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email: data.email,
-        password: data.password,
-      }),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        localStorage.setItem("Authorization", res.access_token);
-      });
-  };
-
-  // POST http://localhost:8000/auth/login
-  // Request fields : email, pw
-  // Response fields : accessToken, refreshToken, userInfo
-
   return (
     <Container>
       <TextBoard>
@@ -90,12 +61,12 @@ const Home = () => {
           모든 핵심 과정을 폼나는싸패에서 한번에 해결하실 수 있습니다.
         </Description>
       </TextBoard>
-      <form onSubmit={handleSubmit(onValidSignIn)}>
-        <SignupButton type="submit">로그인</SignupButton>
-        <Link to="/Signup">
-          <SignupButton>회원가입</SignupButton>
-        </Link>
-      </form>
+      <Link to="/SignIn">
+        <SignupButton>로그인</SignupButton>
+      </Link>
+      <Link to="/SignUp">
+        <SignupButton>회원가입</SignupButton>
+      </Link>
     </Container>
   );
 };
