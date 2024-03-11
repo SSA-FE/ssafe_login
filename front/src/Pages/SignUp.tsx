@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -77,7 +77,7 @@ const Signup = () => {
 
   const navigate = useNavigate();
 
-  const onValid = (data: ISignUpForm) => {
+  const onValidSignUp = (data: ISignUpForm) => {
     console.log(data);
     alert(`회원가입 성공!
 email: ${data.email}
@@ -108,7 +108,7 @@ password: ${data.password}
           <br />
           폼나는싸패
         </Title>
-        <form onSubmit={handleSubmit(onValid)}>
+        <form onSubmit={handleSubmit(onValidSignUp)}>
           <TextBox>
             <InputInfo htmlFor="email">이메일</InputInfo>
             <InputBox
