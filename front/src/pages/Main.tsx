@@ -3,6 +3,7 @@ import styled from "styled-components";
 import SignUpTopBar from "../components/SignUpTopBar";
 import { useNavigate } from "react-router-dom";
 import AuthService from "../services/AuthService";
+import AuthHeader from "../services/AuthHeader";
 
 interface SignUpInputStyleProps {
   error: boolean;
@@ -106,7 +107,14 @@ const SignUpMain: React.FC = () => {
     } else {
       setEmailError(false);
     }
-
+    setIsButtonDisabled(
+      emailError ||
+        passwordError ||
+        passwordCheckError ||
+        email === "" ||
+        password === "" ||
+        passwordCheck === ""
+    );
   };
 
   const checkPassword = () => {
@@ -115,7 +123,14 @@ const SignUpMain: React.FC = () => {
     } else {
       setPasswordError(false);
     }
-
+    setIsButtonDisabled(
+      emailError ||
+        passwordError ||
+        passwordCheckError ||
+        email === "" ||
+        password === "" ||
+        passwordCheck === ""
+    );
   };
 
   const checkPasswordCheck = () => {
@@ -124,7 +139,14 @@ const SignUpMain: React.FC = () => {
     } else {
       setPasswordCheckError(false);
     }
-
+    setIsButtonDisabled(
+      emailError ||
+        passwordError ||
+        passwordCheckError ||
+        email === "" ||
+        password === "" ||
+        passwordCheck === ""
+    );
   };
 
   const handleSignUp = () => {
@@ -141,10 +163,11 @@ const SignUpMain: React.FC = () => {
       passwordCheck !== ""
     ) {
       alert(`Email: ${email}, Password: ${password}`);
+      console.log(AuthHeader());
       //AuthService.signup(email, password, passwordCheck);
-      AuthService.login(email, password);
+      //AuthService.login(email, password);
       //AuthService.test();
-      //AuthService.logout();
+      AuthService.logout();
       navigate("/test");
     } else {
       console.log("회원가입 버튼 클릭: 유효성 검사 실패");
