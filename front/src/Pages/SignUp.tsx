@@ -32,6 +32,8 @@ const SignUp = () => {
     // email : ssafe11@gmail.com
     // password : sfsf234%
 
+    // email: test11@gmail.com
+    // password : test1234%
     // e.preventDefault();
 
     fetch("http://localhost:8000/auth/signup", {
@@ -49,21 +51,20 @@ const SignUp = () => {
           console.log(
             `회원가입 성공! email: ${data.email}, pw: ${data.password}`
           );
-          alert(`${res.message}
+          alert(`회원가입 성공!
 email: ${data.email}
 password: ${data.password}
         `);
-          navigate("/");
-        } else if (res.status === 400) {
-          alert(`회원가입 실패: ${data.email}`);
-        } else if (res.status === 500) {
-          alert("서버 오류");
         }
+        navigate("/");
+      })
+      .catch((err) => {
+        alert(`회원가입 실패`);
       });
-    // .catch((error) => {
-    //   console.error(`오류 발생: ${error}`);
-    //   alert("오류가 발생했습니다.");
-    // });
+    //   alert(`회원가입 실패: ${data.email}`);
+    // } else if (res.status === 500) {
+    //   alert("서버 오류");
+    // }
   };
 
   return (

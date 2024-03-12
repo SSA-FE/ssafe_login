@@ -49,12 +49,17 @@ const LogIn = () => {
         if (res.refreshToken) {
           localStorage.setItem("refreshToken", res.refreshToken);
         }
-        // authController.js line 62 - tokenInfo & userInfo mixed?
+        // authController.js line 62
         if (res.userInfo) {
           console.log(`userInfo: ${res.userInfo.email}`);
         }
         navigate("/AuthCreate");
         // 에러시 에러메세지 출력(406, 500)
+      })
+      .catch((err) => {
+        if ((err.status = 406)) {
+          alert("패스워드가 일치하지 않습니다.");
+        }
       });
   };
 

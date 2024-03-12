@@ -31,6 +31,9 @@ const Home = () => {
       <Link to="/SignUp">
         <SignupButton>회원가입</SignupButton>
       </Link>
+      <Link to="/CreateForm">
+        <SignupButton>폼작성 테스트</SignupButton>
+      </Link>
     </Container>
   );
 };
