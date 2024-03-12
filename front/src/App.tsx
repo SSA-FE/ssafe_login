@@ -5,6 +5,7 @@ import Home from "./Pages/Home";
 import LogIn from "./Pages/LogIn";
 import SignUp from "./Pages/SignUp";
 import AuthCreate from "./Pages/AuthCreate";
+import CreateForm from "./Pages/CreateForm";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/LogIn" element={<LogIn />} />
         <Route path="/AuthCreate" element={<AuthCreate />} />
+        <Route path="/CreateForm" element={<CreateForm />} />
       </Routes>
     </BrowserRouter>
   );
