@@ -22,9 +22,9 @@ export const Title = styled.h1`
 export const TextBox = styled.div`
   display: flex;
   flex-direction: column;
-  height: 400px;
+  height: auto;
   width: auto;
-  margin-bottom: 10px;
+  margin: 10px 0px 30px 0px;
 `;
 
 export const InputInfo = styled.label`

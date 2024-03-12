@@ -49,10 +49,12 @@ const LogIn = () => {
         if (res.refreshToken) {
           localStorage.setItem("refreshToken", res.refreshToken);
         }
+        // authController.js line 62 - tokenInfo & userInfo mixed?
         if (res.userInfo) {
-          localStorage.setItem("userInfo", res.userInfo);
+          console.log(`userInfo: ${res.userInfo.email}`);
         }
-        navigate("/");
+        navigate("/AuthCreate");
+        // 에러시 에러메세지 출력(406, 500)
       });
   };
 

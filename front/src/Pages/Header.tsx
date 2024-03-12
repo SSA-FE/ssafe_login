@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import { Link } from "react-router-dom";
 import {
   HeaderArea,
@@ -24,7 +23,9 @@ const Header = () => {
             2024 SSAFE FORM PROJECT Creare your own Form
           </InfoText>
         </HeaderLeft>
-        <WriteButton>바로 작성하기</WriteButton>
+        <Link to="/AuthCreate">
+          <WriteButton>바로 작성하기</WriteButton>
+        </Link>
       </HeaderArea>
     </>
   );

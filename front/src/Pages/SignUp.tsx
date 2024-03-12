@@ -46,8 +46,10 @@ const SignUp = () => {
       .then((res) => res.json())
       .then((res) => {
         if (res.status === 200) {
-          console.log(`회원가입 성공: + ${data.email}`);
-          alert(`회원가입 성공!
+          console.log(
+            `회원가입 성공! email: ${data.email}, pw: ${data.password}`
+          );
+          alert(`${res.message}
 email: ${data.email}
 password: ${data.password}
         `);
