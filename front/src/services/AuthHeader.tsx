@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react";
+
+
 export default function AuthHeader() {
   const userStr = localStorage.getItem("user");
   let user = null;

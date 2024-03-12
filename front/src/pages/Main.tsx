@@ -74,7 +74,7 @@ const SignUpMainStyle = styled.div`
 `;
 
 const SignUpMain: React.FC = () => {
-  const nav = useNavigate();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
@@ -106,14 +106,7 @@ const SignUpMain: React.FC = () => {
     } else {
       setEmailError(false);
     }
-    setIsButtonDisabled(
-      emailError ||
-        passwordError ||
-        passwordCheckError ||
-        email === "" ||
-        password === "" ||
-        passwordCheck === ""
-    );
+
   };
 
   const checkPassword = () => {
@@ -122,14 +115,7 @@ const SignUpMain: React.FC = () => {
     } else {
       setPasswordError(false);
     }
-    setIsButtonDisabled(
-      emailError ||
-        passwordError ||
-        passwordCheckError ||
-        email === "" ||
-        password === "" ||
-        passwordCheck === ""
-    );
+
   };
 
   const checkPasswordCheck = () => {
@@ -138,14 +124,7 @@ const SignUpMain: React.FC = () => {
     } else {
       setPasswordCheckError(false);
     }
-    setIsButtonDisabled(
-      emailError ||
-        passwordError ||
-        passwordCheckError ||
-        email === "" ||
-        password === "" ||
-        passwordCheck === ""
-    );
+
   };
 
   const handleSignUp = () => {
@@ -166,7 +145,7 @@ const SignUpMain: React.FC = () => {
       AuthService.login(email, password);
       //AuthService.test();
       //AuthService.logout();
-      nav("/test");
+      navigate("/test");
     } else {
       console.log("회원가입 버튼 클릭: 유효성 검사 실패");
     }
