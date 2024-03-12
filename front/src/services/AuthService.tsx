@@ -1,10 +1,13 @@
 import axios from "axios";
 import authHeader from "./AuthHeader";
 
+const instance = axios.create({
+  baseURL: "http://localhost:8000", // Set your base URL here
+});
 class AuthService {
   signup(email: string, pw: string, comparePw: string) {
-    return axios
-      .post("http://localhost:8000/auth/signup", {
+    return instance
+      .post("/auth/signup", {
         email: email,
         pw: pw,
         comparePw: comparePw,
@@ -18,8 +21,8 @@ class AuthService {
   }
 
   login(email: string, pw: string) {
-    return axios
-      .post("http://localhost:8000/auth/login", {
+    return instance
+      .post("/auth/login", {
         email: email,
         pw: pw,
       })
@@ -41,8 +44,8 @@ class AuthService {
   }
   test() {
     console.log(authHeader());
-    return axios
-      .get("http://localhost:8000/auth/test", {
+    return instance
+      .get("/auth/test", {
         headers: authHeader(),
       })
       .then((response) => {

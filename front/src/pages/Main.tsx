@@ -165,7 +165,7 @@ const SignUpMain: React.FC = () => {
       alert(`Email: ${email}, Password: ${password}`);
       console.log(AuthHeader());
       //AuthService.signup(email, password, passwordCheck);
-      //AuthService.login(email, password);
+      AuthService.login(email, password);
       //AuthService.test();
       AuthService.logout();
       navigate("/test");
