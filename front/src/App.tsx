@@ -1,8 +1,8 @@
 import React from "react";
 import "./App.css";
-import SignUpHome from "./pages/SignUpHome";
-import SignUpMain from "./pages/SignUpMain";
-import SignUpTest from "./pages/SignUpTest";
+import Home from "./pages/Home";
+import Main from "./pages/Main";
+import Test from "./pages/Test";
 import ProtectedRoute from "./router/ProtectedRoutes";
 import { createGlobalStyle } from "styled-components";
 import { Route, Routes,Navigate } from "react-router-dom";
@@ -21,9 +21,9 @@ function App() {
       <Reset />
       <GlobalStyle />
       <Routes>
-        <Route path="/" element={<SignUpHome />} />
-        <Route path="/main" element={<SignUpMain />} />
-        <Route path="/test" element={<ProtectedRoute isAuthenticated={isAuthenticated}><SignUpTest/></ProtectedRoute>} />
+        <Route path="/" element={<Home />} />
+        <Route path="/main" element={<Main />} />
+        <Route path="/test" element={<ProtectedRoute isAuthenticated={isAuthenticated}><Test/></ProtectedRoute>} />
       </Routes>
     </>
   );
