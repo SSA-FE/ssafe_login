@@ -23,7 +23,7 @@ function App() {
       <Routes>
         <Route path="/" element={<SignUpHome />} />
         <Route path="/main" element={<SignUpMain />} />
-
+        <Route path="/test" element={<ProtectedRoute isAuthenticated={isAuthenticated}><SignUpTest/></ProtectedRoute>} />
       </Routes>
     </>
   );
