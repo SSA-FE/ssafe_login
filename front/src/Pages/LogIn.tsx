@@ -27,6 +27,9 @@ const LogIn = () => {
   // email : ssafe11@gmail.com
   // password : sfsf234%
 
+  // email: test11@gmail.com
+  // password : test1234%
+
   // 서버 : 회원 DB를 통해 사용자 id & pw 일치 여부 확인 - accessToken & refreshToken 발급
   // 토큰 DB에 사용자 refresh Token 저장 (?)
   // 생성된 accessToken & refreshToken - 클라이언트에 반환
@@ -55,12 +58,12 @@ const LogIn = () => {
         }
         navigate("/AuthCreate");
         // 에러시 에러메세지 출력(406, 500)
-      })
-      .catch((err) => {
-        if ((err.status = 406)) {
-          alert("패스워드가 일치하지 않습니다.");
-        }
       });
+    // .catch((err) => {
+    //   if ((err.status = 406)) {
+    //     alert("패스워드가 일치하지 않습니다.");
+    //   }
+    // });
   };
 
   return (

@@ -47,24 +47,9 @@ const SignUp = () => {
     })
       .then((res) => res.json())
       .then((res) => {
-        if (res.status === 200) {
-          console.log(
-            `회원가입 성공! email: ${data.email}, pw: ${data.password}`
-          );
-          alert(`회원가입 성공!
-email: ${data.email}
-password: ${data.password}
-        `);
-        }
+        alert(`회원가입 성공! email: ${data.email} / pw: ${data.password}`);
         navigate("/");
-      })
-      .catch((err) => {
-        alert(`회원가입 실패`);
       });
-    //   alert(`회원가입 실패: ${data.email}`);
-    // } else if (res.status === 500) {
-    //   alert("서버 오류");
-    // }
   };
 
   return (
