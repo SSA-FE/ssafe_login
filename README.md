@@ -18,8 +18,8 @@ SSAFE LOGIN 4th Mission
 - Home , Main , Test 의 네이밍 컨벤션 수정 , Nav -> Navigation 으로 네이밍 컨벤션 수정
 3. Axios Base Url 설정
 - localhose8000 : 을 Axios BaserUrl 로 설정
-4. vercel 배포
+4. 로그인, Test 용 버튼 추가
 
 # 작업 예정
 Validation 로직 수정
-로그인, Test 용 버튼 추가
+vercel 배포
