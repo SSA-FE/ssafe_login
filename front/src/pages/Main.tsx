@@ -164,15 +164,23 @@ const SignUpMain: React.FC = () => {
     ) {
       alert(`Email: ${email}, Password: ${password}`);
       console.log(AuthHeader());
-      //AuthService.signup(email, password, passwordCheck);
-      AuthService.login(email, password);
-      //AuthService.test();
-      AuthService.logout();
-      navigate("/test");
+      AuthService.signup(email, password, passwordCheck);
+     
+  
     } else {
       console.log("회원가입 버튼 클릭: 유효성 검사 실패");
     }
   };
+  const handleLogin = () => {
+    AuthService.login(email, password);
+    navigate("/test");
+  }
+  const handleTest = () => {
+    AuthService.test();
+  }
+  const handleLogout = () => {
+    AuthService.logout();
+  }
 
   const handlePwVisibleBtn = () => {
     setIsPwVisible(!isPwVisible);
@@ -246,6 +254,15 @@ const SignUpMain: React.FC = () => {
         </SignUpInputStyle>
         <MainSignUpBtn onClick={handleSignUp} disabled={isButtonDisabled}>
           회원가입
+        </MainSignUpBtn>
+        <MainSignUpBtn onClick={handleLogin} >
+          로그인
+        </MainSignUpBtn>
+        <MainSignUpBtn onClick={handleTest} >
+          테스트
+        </MainSignUpBtn>
+        <MainSignUpBtn onClick={handleLogout} >
+          로그아웃
         </MainSignUpBtn>
       </SignUpMainStyle>
     </>
